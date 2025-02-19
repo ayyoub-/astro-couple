@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compatibilité Astrologique{% endblock %}
+
+{% block body %}
+    <h1>Génération des cartes astrologiques</h1>
+
+    <div class="astro-form">
+        <h2>Personne 1</h2>
+        <form method="post">
+            {{ form_start(form1) }}
+            {{ form_widget(form1) }}
+            {{ form_end(form1) }}
+
+            <h2>Personne 2</h2>
+            {{ form_start(form2) }}
+            {{ form_widget(form2) }}
+            {{ form_end(form2) }}
+        </form>
+    </div>
+{% endblock %}

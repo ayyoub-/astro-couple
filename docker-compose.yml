@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  mysql:
+    container_name: astro_couple_db
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: astro-couple-db
+    ports:
+      - "3310:3310"
+
+  php_ai:
+    container_name: astro_couple_ai_client
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${UID:-1000}
+    ports:
+      - "81:80"
+    volumes:
+      - './ai_client:/var/www/html'
+    restart: on-failure
+
+networks:
+  astro-couple:
+    name: astro-couple
+    driver: bridge
