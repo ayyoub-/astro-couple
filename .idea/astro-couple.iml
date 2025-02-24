@@ -74,6 +74,7 @@
       <excludeFolder url="file://$MODULE_DIR$/ai_client/vendor/symfony/yaml" />
       <excludeFolder url="file://$MODULE_DIR$/ai_client/vendor/twig/twig" />
       <excludeFolder url="file://$MODULE_DIR$/ai_client/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/ai_client/vendor/symfony/validator" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

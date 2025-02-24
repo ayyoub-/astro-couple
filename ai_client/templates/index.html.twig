@@ -7,15 +7,25 @@
 
     <div class="astro-form">
         <h2>Personne 1</h2>
-        <form method="post">
-            {{ form_start(form1) }}
-            {{ form_widget(form1) }}
-            {{ form_end(form1) }}
+        <form method="post" id="astro-form">
+            <div class="astro-form">
+                <div>
+                    <h2>Personne 1</h2>
+                    {{ form_widget(form1) }}
+                </div>
 
-            <h2>Personne 2</h2>
-            {{ form_start(form2) }}
-            {{ form_widget(form2) }}
-            {{ form_end(form2) }}
+                <div>
+                    <h2>Personne 2</h2>
+                    {{ form_widget(form2) }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Générer la carte astrologique</button>
         </form>
     </div>
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
 {% endblock %}
