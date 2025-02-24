@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultat de compatibilité astrologique{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h1 class="text-center">✨ Résultat de la compatibilité astrologique ✨</h1>
+        <h2 class="text-center">💫 Analyse de Compatibilité</h2>
+        <p class="mt-3">{{ resultat|raw }}</p>
+
+        <div class="text-center mt-4">
+            <a href="{{ path('astro-couple-index') }}" class="btn btn-primary btn-lg">🔄 Refaire une analyse</a>
+        </div>
+    </div>
+{% endblock %}

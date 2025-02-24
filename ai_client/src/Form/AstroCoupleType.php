@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\AstroCouple;
 
-class AstroType extends AbstractType
+class AstroCoupleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

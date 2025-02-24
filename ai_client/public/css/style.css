@@ -76,3 +76,28 @@ form {
     width: 350px;
     min-width: 300px;
 }
+
+.card {
+    border-radius: 15px;
+    border: none;
+    background: #f8f9fa;
+}
+
+h1, h2 {
+    color: #5a3d5c; /* Couleur élégante */
+    font-weight: bold;
+}
+
+.container {
+    max-width: 900px;
+}
+
+.btn-primary {
+    background-color: #6a0572;
+    border-color: #6a0572;
+}
+
+.btn-primary:hover {
+    background-color: #8c0c8c;
+    border-color: #8c0c8c;
+}

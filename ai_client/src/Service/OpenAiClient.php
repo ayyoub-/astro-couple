@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\AstroCouple;
 use OpenAI\Client;
 use OpenAI\Responses\Chat\CreateResponse;
 
@@ -13,18 +14,45 @@ class OpenAiClient
     {
     }
 
-    public function guessInfluencers(string $request): array
+    public function getAstrologyAnalysis(AstroCouple $astroCouple): ?string
     {
-        /** @var CreateResponse $response */
+        $prompt = "
+        Voici les informations concernant deux personnes pour une analyse astrologique de leur compatibilité :
+
+        Personne 1 :
+        - Nom : {$astroCouple->getNom1()}
+        - Date et heure de naissance : {$astroCouple->getDateNaissance1()->format('Y-m-d H:i')}
+        - Lieu de naissance : {$astroCouple->getLieuNaissance1()}
+
+        Personne 2 :
+        - Nom : {$astroCouple->getNom2()}
+        - Date et heure de naissance : {$astroCouple->getDateNaissance2()->format('Y-m-d H:i')}
+        - Lieu de naissance : {$astroCouple->getLieuNaissance2()}
+        ### Instruction :
+        Génère une analyse astrologique de leur compatibilité, en mettant en évidence les points forts, les points faibles, et un score global de compatibilité entre les deux. Indique également les aspects astrologiques clés qui influencent cette relation.
+        il faut bien remplacé Personne1 et Personne2 par les noms fournis.
+
+        ### Format de réponse :
+        Présente la réponse sous forme de code HTML structuré et bien formaté pour un affichage facile sur une page web sans les balises (html, head et body). et tu peux utiliser des icones pour rendre le résultat plus beaux";
+
+        // Appel à l'API OpenAI pour générer une réponse astrologique
         $response = $this->client->chat()->create([
             'model' => 'gpt-4o',
             'messages' => [
-                ['role' => 'system', 'content' => "You are an API like HypeAuditor, InfluencerDB specialized in retrieving real and publicly available information about Instagram accounts. Your primary role is to provide accurate and verified details about existing accounts based on the specified criteria. Do not fabricate or provide information about non-existent accounts. Only return information that is publicly accessible and verifiable."],
-                ['role' => 'user', 'content' => $request],
+                [
+                    'role' => 'system',
+                    'content' => 'Vous êtes un astrologue expert qui génère des analyses astrologiques détaillées et précises.'
+                ],
+                [
+                    'role' => 'user',
+                    'content' => $prompt
+                ]
             ],
-            'max_tokens' => 2000,
+            'max_tokens' => 1000
         ]);
-        dd($response->choices[0]->message->content);
-        return ['Service works'];
+
+
+
+        return $response->choices[0]->message->content;
     }
 }
